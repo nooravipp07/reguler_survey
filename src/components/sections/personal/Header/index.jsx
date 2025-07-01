@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Card, Modal, Row, Col, Form, Input, Button } from "antd";
-import styles from "./styles.module.css";
 
 const Header = () => {
     const [visible, setVisible] = useState(false);
@@ -13,43 +12,46 @@ const Header = () => {
     };
 
     return (
-        <Card title="Reguler Survey" className={styles.card}>
+        <Card 
+            title="Reguler Survey" 
+            className="mx-4 mt-4 shadow-none border-b border-orange-500"
+        >
             <Form layout="vertical">
                 <Row gutter={16}>
                     <Col xs={24} md={12}>
-                        <Form.Item className={styles.boldLabel} label="No Aplikasi">
-                            <Input disabled value="Ahmad Sobari" />
+                        <Form.Item label={<span className="font-semibold">No Aplikasi</span>}>
+                            <Input disabled value="Ahmad Sobari" className="font-semibold" />
                         </Form.Item>
                     </Col>
                     <Col xs={24} md={12}>
-                        <Form.Item className={styles.boldLabel} label="Tanggal Aplikasi">
-                            <Input disabled />
-                        </Form.Item>
-                    </Col>
-                </Row>
-
-                <Row gutter={16}>
-                    <Col xs={24} md={12}>
-                        <Form.Item className={styles.boldLabel} label="Nama Sesuai KTP">
-                            <Input disabled />
-                        </Form.Item>
-                    </Col>
-                    <Col xs={24} md={12}>
-                        <Form.Item className={styles.boldLabel} label="Source Order">
-                            <Input disabled />
+                        <Form.Item label={<span className="font-semibold">Tanggal Aplikasi</span>}>
+                            <Input disabled className="font-semibold" />
                         </Form.Item>
                     </Col>
                 </Row>
 
                 <Row gutter={16}>
                     <Col xs={24} md={12}>
-                        <Form.Item className={styles.boldLabel} label="Tipe Nasabah">
-                            <Input disabled />
+                        <Form.Item label={<span className="font-semibold">Nama Sesuai KTP</span>}>
+                            <Input disabled className="font-semibold" />
                         </Form.Item>
                     </Col>
                     <Col xs={24} md={12}>
-                        <Form.Item className={styles.boldLabel} label="Cabang">
-                            <Input disabled />
+                        <Form.Item label={<span className="font-semibold">Source Order</span>}>
+                            <Input disabled className="font-semibold" />
+                        </Form.Item>
+                    </Col>
+                </Row>
+
+                <Row gutter={16}>
+                    <Col xs={24} md={12}>
+                        <Form.Item label={<span className="font-semibold">Tipe Nasabah</span>}>
+                            <Input disabled className="font-semibold" />
+                        </Form.Item>
+                    </Col>
+                    <Col xs={24} md={12}>
+                        <Form.Item label={<span className="font-semibold">Cabang</span>}>
+                            <Input disabled className="font-semibold" />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -57,7 +59,11 @@ const Header = () => {
                 <Row justify="end">
                     <Col>
                         <Form.Item>
-                            <Button type="primary" style={{ backgroundColor: '#004890', color: 'white' }} variant="solid" onClick={handleOpenModal}>
+                            <Button 
+                                type="primary" 
+                                className="bg-primary hover:bg-primary-hover border-primary"
+                                onClick={handleOpenModal}
+                            >
                                 Detail
                             </Button>
                         </Form.Item>
@@ -71,9 +77,8 @@ const Header = () => {
                 onCancel={() => setVisible(false)}
                 footer={null}
                 width="100%"
-                height="80%"
                 style={{ top: 20 }}
-                className={styles.customModal}
+                className="h-screen"
             >
                 <iframe
                     src={iframeUrl}

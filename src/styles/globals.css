@@ -1,23 +1,87 @@
-/* Target the title container */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
-/* Target the body */
-.card :global(.ant-card-body) {
-  padding: 0;
+/* Custom CSS for Ant Design integration */
+.ant-card-head {
+  padding: 0 0 5px !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  line-height: 19px !important;
+  border-bottom: 1px solid orange !important;
+  margin-bottom: 25px !important;
 }
 
-.boldLabel :global(.ant-form-item-label > label) {
-  font-weight: 600; /* or 700 for bolder */
+.ant-card-body {
+  padding: 0 !important;
 }
 
-.customModal :global(.ant-modal-content) {
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
+.ant-form-item-label > label {
+  font-weight: 600 !important;
 }
 
-.customModal :global(.ant-modal-body) {
-    flex: 1; /* take remaining height */
-    padding: 0;
-    overflow: hidden; /* prevent scrollbars if iframe fits perfectly */
+.ant-modal-content {
+  height: 90vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.ant-modal-body {
+  flex: 1 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Custom utility classes */
+@layer utilities {
+  .text-primary {
+    color: #004890;
+  }
+  
+  .bg-primary {
+    background-color: #004890;
+  }
+  
+  .bg-primary-hover:hover {
+    background-color: #003670;
+  }
+  
+  .text-danger {
+    color: #FF0000;
+  }
+  
+  .bg-danger {
+    background-color: #FF0000;
+  }
+  
+  .bg-danger-hover:hover {
+    background-color: #CC0000;
+  }
+}
+
+/* Form wrapper styles */
+.form-wrapper {
+  margin-top: 15px;
+}
+
+.space {
+  display: flex;
+  flex: 1;
+  margin-top: 15px;
+}
+
+.collapse-header {
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+}
+
+.custom-collapse .ant-collapse-header {
+  background-color: #004890 !important;
+  font-weight: bold !important;
+  padding: 12px !important;
+  border-radius: 6px !important;
 }

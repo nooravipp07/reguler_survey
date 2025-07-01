@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Space } from 'antd';
+import { useAppSelector, useAppDispatch } from '@/hooks/useRedux';
 import Header from '@/components/sections/personal/Header';
 import InformasiNasabah from '@/components/sections/personal/InformasiNasabah';
 import InformasiTempatTinggal from '@/components/sections/personal/InformasiTempatTinggal';
@@ -12,42 +13,28 @@ import InformasiPencairanLangsung from '@/components/sections/personal/Informasi
 import EmergencyContact from '@/components/sections/personal/EmergncyContact';
 import InformasiSurvey from '@/components/sections/personal/InformasiSurvey';
 import CancelApplication from '@/components/sections/personal/CancelApplication';
-
 import FormCard from '@/components/ui/FormCard';
 
-
 const Home = () => {
+    const dispatch = useAppDispatch();
+    const { sectionVisibility } = useAppSelector((state) => state.survey);
 
     const sections = [
         { key: 'showInformasiNasabah', component: <InformasiNasabah /> },
         { key: 'showInformasiPekerjaanWira', component: <InformasiPekerjaanWira /> },
-		{ key: 'showInformasiPekerjaanNonWira', component: <InformasiPekerjaanNonWira /> },
-		{ key: 'showInformasiTempatTinggal', component: <InformasiTempatTinggal /> },
-		{ key: 'showInformasiOrder', component: <InformasiOrder /> },
-		{ key: 'showInformasiObjectPembiayaan', component: <InformasiObjectPembiayaan /> },
-		{ key: 'showInformasiSupplier', component: <InformasiSupplier /> },
-		{ key: 'showInformasiPencairanLangsung', component: <InformasiPencairanLangsung /> },
-		{ key: 'showEmergencyContact', component: <EmergencyContact /> },
-		{ key: 'showInformasiSurvey', component: <InformasiSurvey /> },
-		{ key: 'showCancelApplication', component: <CancelApplication /> },
+        { key: 'showInformasiPekerjaanNonWira', component: <InformasiPekerjaanNonWira /> },
+        { key: 'showInformasiTempatTinggal', component: <InformasiTempatTinggal /> },
+        { key: 'showInformasiOrder', component: <InformasiOrder /> },
+        { key: 'showInformasiObjectPembiayaan', component: <InformasiObjectPembiayaan /> },
+        { key: 'showInformasiSupplier', component: <InformasiSupplier /> },
+        { key: 'showInformasiPencairanLangsung', component: <InformasiPencairanLangsung /> },
+        { key: 'showEmergencyContact', component: <EmergencyContact /> },
+        { key: 'showInformasiSurvey', component: <InformasiSurvey /> },
+        { key: 'showCancelApplication', component: <CancelApplication /> },
     ];
 
-    const sectionVisibility = {
-		showInformasiNasabah: true,
-		showInformasiPekerjaanWira: true,
-		showInformasiPekerjaanNonWira: true,
-		showInformasiTempatTinggal: true,
-		showInformasiOrder: true,
-		showInformasiObjectPembiayaan: true,
-		showInformasiSupplier: true,
-		showInformasiPencairanLangsung: true,
-		showEmergencyContact: true,
-		showInformasiSurvey: true,
-		showCancelApplication: true,
-	};
-
     return (
-        <>
+        <div className="min-h-screen bg-gray-50">
             <Header />
             <FormCard>
                 {sections.map(({ key, component }) =>
@@ -55,12 +42,22 @@ const Home = () => {
                 )}
             </FormCard>
             <FormCard>
-                <Space style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                    <Button style={{ backgroundColor: '#FF0000', color: 'white' }} variant="solid">Cancel</Button>
-                    <Button style={{ backgroundColor: '#004890', color: 'white' }} variant="solid">Submit</Button>
+                <Space className="flex justify-start">
+                    <Button 
+                        className="bg-danger hover:bg-danger-hover text-white border-danger"
+                        type="primary"
+                    >
+                        Cancel
+                    </Button>
+                    <Button 
+                        className="bg-primary hover:bg-primary-hover text-white border-primary"
+                        type="primary"
+                    >
+                        Submit
+                    </Button>
                 </Space>
             </FormCard>
-        </>
+        </div>
     );
 };
 
