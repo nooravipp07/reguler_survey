@@ -1,0 +1,23 @@
+/* Target the title container */
+
+
+/* Target the body */
+.card :global(.ant-card-body) {
+  padding: 0;
+}
+
+.boldLabel :global(.ant-form-item-label > label) {
+  font-weight: 600; /* or 700 for bolder */
+}
+
+.customModal :global(.ant-modal-content) {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.customModal :global(.ant-modal-body) {
+    flex: 1; /* take remaining height */
+    padding: 0;
+    overflow: hidden; /* prevent scrollbars if iframe fits perfectly */
+}
