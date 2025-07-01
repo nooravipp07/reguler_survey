@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Upload, Button, Modal, Typography, message, Spin } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { 
+    UploadOutlined, 
+    EyeOutlined, 
+    DeleteOutlined,
+    FileImageOutlined,
+    LoadingOutlined
+} from '@ant-design/icons';
 
 const { Text, Link } = Typography;
 
@@ -76,9 +82,11 @@ const FileUploader = ({ payloadData }) => {
 
     const handleRemove = () => setFileList([]);
 
+    const antIcon = <LoadingOutlined style={{ fontSize: 16 }} spin />;
+
     return (
         <>
-            <Spin spinning={loading}>
+            <Spin spinning={loading} indicator={antIcon}>
                 <Upload
                     beforeUpload={handleUpload}
                     accept="image/*"
@@ -88,27 +96,54 @@ const FileUploader = ({ payloadData }) => {
                     onPreview={handlePreview}
                     onRemove={handleRemove}
                     disabled={loading}
+                    className="w-full"
                 >
-                    <Button icon={<UploadOutlined />} disabled={loading}>
+                    <Button 
+                        icon={loading ? <LoadingOutlined /> : <UploadOutlined />} 
+                        disabled={loading}
+                        className="flex items-center gap-2"
+                    >
                         {loading ? 'Uploading...' : 'Upload File'}
                     </Button>
                 </Upload>
 
                 {fileList.length > 0 && (
-                    <div style={{ marginTop: 8 }}>
-                        <Text strong>Uploaded:</Text>{' '}
-                        <Link onClick={() => handlePreview(fileList[0])}>
-                            {fileList[0].name}
-                        </Link>
+                    <div className="mt-2 p-2 bg-gray-50 rounded border">
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                                <FileImageOutlined className="text-blue-500" />
+                                <Text strong>Uploaded:</Text>
+                                <Link 
+                                    onClick={() => handlePreview(fileList[0])}
+                                    className="flex items-center gap-1"
+                                >
+                                    <EyeOutlined />
+                                    {fileList[0].name}
+                                </Link>
+                            </div>
+                            <Button 
+                                type="text" 
+                                size="small" 
+                                icon={<DeleteOutlined />} 
+                                onClick={handleRemove}
+                                className="text-red-500 hover:text-red-700"
+                            />
+                        </div>
                     </div>
                 )}
             </Spin>
 
             <Modal
                 open={previewVisible}
-                title="Preview Image"
+                title={
+                    <div className="flex items-center gap-2">
+                        <EyeOutlined />
+                        Preview Image
+                    </div>
+                }
                 footer={null}
                 onCancel={() => setPreviewVisible(false)}
+                width={800}
             >
                 <img alt="preview" style={{ width: '100%' }} src={previewImage} />
             </Modal>

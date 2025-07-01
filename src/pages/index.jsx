@@ -1,5 +1,10 @@
 import React from 'react';
 import { Button, Space } from 'antd';
+import { 
+    CloseOutlined, 
+    CheckOutlined,
+    FormOutlined 
+} from '@ant-design/icons';
 import { useAppSelector, useAppDispatch } from '@/hooks/useRedux';
 import Header from '@/components/sections/personal/Header';
 import InformasiNasabah from '@/components/sections/personal/InformasiNasabah';
@@ -36,7 +41,14 @@ const Home = () => {
     return (
         <div className="min-h-screen bg-gray-50">
             <Header />
-            <FormCard>
+            <FormCard 
+                title={
+                    <div className="flex items-center gap-2">
+                        <FormOutlined className="text-primary" />
+                        <span>Survey Form</span>
+                    </div>
+                }
+            >
                 {sections.map(({ key, component }) =>
                     sectionVisibility[key] ? <div key={key}>{component}</div> : null
                 )}
@@ -44,14 +56,18 @@ const Home = () => {
             <FormCard>
                 <Space className="flex justify-start">
                     <Button 
-                        className="bg-danger hover:bg-danger-hover text-white border-danger"
+                        icon={<CloseOutlined />}
+                        className="bg-danger hover:bg-danger-hover text-white border-danger flex items-center"
                         type="primary"
+                        size="large"
                     >
                         Cancel
                     </Button>
                     <Button 
-                        className="bg-primary hover:bg-primary-hover text-white border-primary"
+                        icon={<CheckOutlined />}
+                        className="bg-primary hover:bg-primary-hover text-white border-primary flex items-center"
                         type="primary"
+                        size="large"
                     >
                         Submit
                     </Button>

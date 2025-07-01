@@ -1,10 +1,26 @@
 import { useState } from "react";
 import { Collapse, Space, Row, Col, Radio, Form, Checkbox, Input, Select, DatePicker } from "antd";
-import { EyeOutlined } from '@ant-design/icons';
+import { 
+    EyeOutlined, 
+    UserOutlined, 
+    CameraOutlined, 
+    IdcardOutlined,
+    HomeOutlined,
+    PhoneOutlined,
+    EnvironmentOutlined,
+    FileImageOutlined,
+    SafetyCertificateOutlined,
+    HeartOutlined
+} from '@ant-design/icons';
 import ExpandIcon from "@/components/ui/Tab/ExpandIcon";
 import FileUploader from "@/components/ui/FileUploader";
 
-const BoldLabel = ({ children }) => <span className="font-medium">{children}</span>;
+const BoldLabel = ({ children, icon }) => (
+    <span className="font-medium flex items-center gap-1">
+        {icon}
+        {children}
+    </span>
+);
 
 const { TextArea } = Input;
 
@@ -40,14 +56,23 @@ const InformasiNasabah = () => {
     const items = [
         {
             key: '1',
-            label: <span className="text-white text-base font-medium">Informasi Nasabah</span>,
+            label: (
+                <span className="text-white text-base font-medium flex items-center gap-2">
+                    <UserOutlined />
+                    Informasi Nasabah
+                </span>
+            ),
             children: (
                 <div className="mt-4">
                     <Form layout="vertical" form={form}>
                         <Row gutter={[5, 5]}>
                             <Col xs={24} sm={24} md={12}>
                                 <Form.Item
-                                    label={<BoldLabel>Lokasi Proses Survey <span className="text-red-500">*</span></BoldLabel>}
+                                    label={
+                                        <BoldLabel icon={<EnvironmentOutlined className="text-primary" />}>
+                                            Lokasi Proses Survey <span className="text-red-500">*</span>
+                                        </BoldLabel>
+                                    }
                                     name="lokasiSurvey"
                                     rules={[{ required: false, message: 'Pilih minimal satu lokasi' }]}
                                 >
@@ -64,7 +89,11 @@ const InformasiNasabah = () => {
                         <Row gutter={[5, 5]}>
                             <Col xs={24} sm={24} md={12}>
                                 <Form.Item
-                                    label={<BoldLabel>Foto Selfie PIC Survey di depan Lokasi Survey <span className="text-red-500">*</span></BoldLabel>}
+                                    label={
+                                        <BoldLabel icon={<CameraOutlined className="text-primary" />}>
+                                            Foto Selfie PIC Survey di depan Lokasi Survey <span className="text-red-500">*</span>
+                                        </BoldLabel>
+                                    }
                                     name="profileImage"
                                     rules={[{ required: false, message: "Wajib pilih salah satu opsi" }]}
                                 >
@@ -83,11 +112,15 @@ const InformasiNasabah = () => {
                         <Row gutter={[5, 5]}>
                             <Col xs={24} sm={24} md={12}>
                                 <Form.Item
-                                    label={<BoldLabel>Nama Lengkap Tanpa Singkatan dan Tanpa Gelar <span className="text-red-500">*</span></BoldLabel>}
+                                    label={
+                                        <BoldLabel icon={<UserOutlined className="text-primary" />}>
+                                            Nama Lengkap Tanpa Singkatan dan Tanpa Gelar <span className="text-red-500">*</span>
+                                        </BoldLabel>
+                                    }
                                     name="namaLengkap"
                                     rules={[{ required: false, message: 'Nama wajib diisi' }]}
                                 >
-                                    <Input />
+                                    <Input prefix={<UserOutlined className="text-gray-400" />} />
                                 </Form.Item>
                             </Col>
                         </Row>
@@ -95,7 +128,11 @@ const InformasiNasabah = () => {
                         <Row gutter={[5, 5]}>
                             <Col xs={24} sm={24} md={12}>
                                 <Form.Item
-                                    label={<BoldLabel>Dapat menunjukan identitas asli <span className="text-red-500">*</span></BoldLabel>}
+                                    label={
+                                        <BoldLabel icon={<IdcardOutlined className="text-primary" />}>
+                                            Dapat menunjukan identitas asli <span className="text-red-500">*</span>
+                                        </BoldLabel>
+                                    }
                                     name="alasan"
                                     rules={[{ required: false, message: 'Wajib pilih salah satu opsi' }]}
                                 >
@@ -114,7 +151,11 @@ const InformasiNasabah = () => {
                             <Row gutter={[5, 5]}>
                                 <Col xs={24} sm={24} md={12}>
                                     <Form.Item
-                                        label={<BoldLabel>Alasan Tidak Dapat menunjukkan identitas asli<span className="text-red-500">*</span></BoldLabel>}
+                                        label={
+                                            <BoldLabel icon={<SafetyCertificateOutlined className="text-primary" />}>
+                                                Alasan Tidak Dapat menunjukkan identitas asli<span className="text-red-500">*</span>
+                                            </BoldLabel>
+                                        }
                                         name="reason"
                                         rules={[{ required: false, message: "Alasan wajib diisi" }]}
                                     >
@@ -129,11 +170,15 @@ const InformasiNasabah = () => {
                             </Row>
                         )}
                         
-                        {/* Rest of the form fields with similar Tailwind class updates */}
                         <Row gutter={[5, 5]}>
                             <Col xs={24} sm={24} md={12}>
                                 <Form.Item
-                                    label={<BoldLabel>Dokumen KTP Debitur <span className="text-red-500">*</span> <EyeOutlined className="text-blue-500 ml-1" /></BoldLabel>}
+                                    label={
+                                        <BoldLabel icon={<IdcardOutlined className="text-primary" />}>
+                                            Dokumen KTP Debitur <span className="text-red-500">*</span> 
+                                            <EyeOutlined className="text-blue-500 ml-1" />
+                                        </BoldLabel>
+                                    }
                                     name="docIdentitas"
                                     rules={[{ required: false, message: 'Wajib pilih salah satu opsi' }]}
                                 >
@@ -147,8 +192,151 @@ const InformasiNasabah = () => {
                                 </Form.Item>
                             </Col>
                         </Row>
-                        
-                        {/* Continue with other form fields... */}
+
+                        {!isDebitorIdenMatches && (
+                            <>
+                                <Row gutter={[5, 5]}>
+                                    <Col xs={24} sm={24} md={12}>
+                                        <Form.Item
+                                            label={
+                                                <BoldLabel icon={<FileImageOutlined className="text-primary" />}>
+                                                    Upload KTP Sesuai
+                                                </BoldLabel>
+                                            }
+                                            name="uploadKTPSesuai"
+                                            rules={[{ required: false, message: "Wajib pilih salah satu opsi" }]}
+                                        >
+                                            <FileUploader
+                                                payloadData={{
+                                                    order_id: "ORD123",
+                                                    current_form_code: "FORM001",
+                                                    insert_by: "user123",
+                                                    doc_code: "KTP",
+                                                }}
+                                            />
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                                
+                                <Row gutter={[5, 5]}>
+                                    <Col xs={24} sm={24} md={12}>
+                                        <Form.Item
+                                            label={
+                                                <BoldLabel icon={<IdcardOutlined className="text-primary" />}>
+                                                    No. KTP Debitur
+                                                </BoldLabel>
+                                            }
+                                            name="noKTPDebitur"
+                                            rules={[{ required: false, message: 'Nama wajib diisi' }]}
+                                        >
+                                            <Input prefix={<IdcardOutlined className="text-gray-400" />} />
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                                
+                                <Row gutter={[5, 5]}>
+                                    <Col xs={24} sm={24} md={12}>
+                                        <Form.Item
+                                            label={
+                                                <BoldLabel icon={<UserOutlined className="text-primary" />}>
+                                                    Nama Sesuai KTP
+                                                </BoldLabel>
+                                            }
+                                            name="namaSesuaiKTP"
+                                            rules={[{ required: false, message: 'Nama wajib diisi' }]}
+                                        >
+                                            <Input prefix={<UserOutlined className="text-gray-400" />} />
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                            </>
+                        )}
+
+                        <Row gutter={[5, 5]}>
+                            <Col xs={24} sm={24} md={12}>
+                                <Form.Item
+                                    label={
+                                        <BoldLabel icon={<HomeOutlined className="text-primary" />}>
+                                            Kartu Keluarga <span className="text-red-500">*</span> 
+                                            <EyeOutlined className="text-blue-500 ml-1" />
+                                        </BoldLabel>
+                                    }
+                                    name="uplokartuKeluarga"
+                                    rules={[{ required: false, message: "Wajib pilih salah satu opsi" }]}
+                                >
+                                    <FileUploader
+                                        payloadData={{
+                                            order_id: "ORD123",
+                                            current_form_code: "FORM001",
+                                            insert_by: "user123",
+                                            doc_code: "KTP",
+                                        }}
+                                    />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+
+                        <Row gutter={[5, 5]}>
+                            <Col xs={24} sm={24} md={12}>
+                                <Form.Item
+                                    label={
+                                        <BoldLabel icon={<HeartOutlined className="text-primary" />}>
+                                            Nama Gadis Ibu Kandung
+                                        </BoldLabel>
+                                    }
+                                    name="namaGadisIbuKandung"
+                                    rules={[{ required: false, message: 'Nama wajib diisi' }]}
+                                >
+                                    <Input prefix={<UserOutlined className="text-gray-400" />} />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+
+                        <Row gutter={[5, 5]}>
+                            <Col xs={24} sm={24} md={12}>
+                                <Form.Item
+                                    label={
+                                        <BoldLabel icon={<CameraOutlined className="text-primary" />}>
+                                            Foto Wajah Debitur
+                                        </BoldLabel>
+                                    }
+                                    name="fotoWajahDebitur"
+                                    rules={[{ required: false, message: "Wajib pilih salah satu opsi" }]}
+                                >
+                                    <FileUploader
+                                        payloadData={{
+                                            order_id: "ORD123",
+                                            current_form_code: "FORM001",
+                                            insert_by: "user123",
+                                            doc_code: "KTP",
+                                        }}
+                                    />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+
+                        <Row gutter={[5, 5]}>
+                            <Col xs={24} sm={24} md={12}>
+                                <Form.Item
+                                    label={
+                                        <BoldLabel icon={<FileImageOutlined className="text-primary" />}>
+                                            Doc FAPP <span className="text-red-500">*</span>
+                                        </BoldLabel>
+                                    }
+                                    name="docFAPP"
+                                    rules={[{ required: false, message: "Wajib pilih salah satu opsi" }]}
+                                >
+                                    <FileUploader
+                                        payloadData={{
+                                            order_id: "ORD123",
+                                            current_form_code: "FORM001",
+                                            insert_by: "user123",
+                                            doc_code: "KTP",
+                                        }}
+                                    />
+                                </Form.Item>
+                            </Col>
+                        </Row>
                     </Form>
                 </div>
             ),
